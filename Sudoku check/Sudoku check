@@ -1,1 +1,30 @@
-
+def solution(grid):
+    
+    diccionary = {}
+    
+    for column in range(len(grid)):
+        for row in range(len(grid)):
+            
+            name_column = "c"+str(column)
+            name_row = "r"+str(row)
+            name_subgrid = "sg"+str(column//3)+str(row//3)
+            
+            if name_column not in diccionary: diccionary[name_column] = []
+            if name_row not in diccionary: diccionary[name_row] = []
+            if name_subgrid not in diccionary: diccionary[name_subgrid] = []
+            
+            if grid[row][column] != ".":
+                
+                if grid[row][column] not in diccionary[name_column]:
+                    diccionary[name_column].append(grid[row][column])
+                else: return False
+                
+                if grid[row][column] not in diccionary[name_row]:
+                    diccionary[name_row].append(grid[row][column])
+                else: return False
+                
+                if grid[row][column] not in diccionary[name_subgrid]:
+                    diccionary[name_subgrid].append(grid[row][column])
+                else: return False
+    
+    return True
